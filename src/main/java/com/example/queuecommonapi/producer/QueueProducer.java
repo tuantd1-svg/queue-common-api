@@ -74,7 +74,7 @@ public class QueueProducer implements IQueueProducer {
                 break;
             case QueueConfig.Q_CREATE_SHOP_USER:
                 payloadQueueRDto.setExchange(QueueConfig.E_SHOP_USER);
-                payloadQueueRDto.setRoutingKey(QueueConfig.Q_CREATE_SHOP_USER);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_CREATE_SHOP_USER);
                 payloadQueueRDto.setPayload(payload);
                 break;
 
