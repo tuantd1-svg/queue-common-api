@@ -11,5 +11,4 @@ public class Payload {
     private String exchange;
     private String routingKey;
     private Object payload;
-
 }

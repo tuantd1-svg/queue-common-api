@@ -24,7 +24,16 @@ public class QueueConfig {
     public final static String VALIDATE_HANDLE_Q_SHOP_CHANGE_PASS="validate.handle.q.shop.change.pass";
     public final static String VALIDATE_HANDLE_R_SHOP_CHANGE_PASS="validate.handle.r.shop.change.pass";
 
+    public final static String Q_CREATE_CATEGORY="q.create.category";
+    public final static String R_CREATE_CATEGORY ="r.create.category";
 
+    public final static String Q_CREATE_PRODUCT = "q.create.product";
+
+    public final static String R_CREATE_PRODUCT = "r.create.product";
+
+    public final static String Q_GET_ORDER_ADMIN = "q.get.order.admin";
+
+    public final static String R_GET_ORDER_ADMIN = "r.get.order.admin";
 
 
 }

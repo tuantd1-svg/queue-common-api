@@ -1,6 +1,7 @@
 package com.example.queuecommonapi.producer;
 
 
+import com.example.commonapi.model.PageResultMessage;
 import com.example.commonapi.model.ResultMessage;
 import com.example.queuecommonapi.config.QueueConfig;
 import com.example.queuecommonapi.config.Receiver;
@@ -39,6 +40,11 @@ public class QueueProducer implements IQueueProducer {
         return rabbitTemplate.convertSendAndReceiveAsType(payload.getExchange(), payload.getRoutingKey(), payload.getPayload(),correlationData, ParameterizedTypeReference.forType(ResultMessage.class));
     }
 
+    private PageResultMessage<?> pageUsingMqRPCQueue(Payload payload)
+    {
+        CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
+        return rabbitTemplate.convertSendAndReceiveAsType(payload.getExchange(), payload.getRoutingKey(), payload.getPayload(),correlationData, ParameterizedTypeReference.forType(PageResultMessage.class));
+    }
     @Override
     public void blockingStartQueue(String queue, Object payload) {
         Payload payloadQueueRDto = new Payload();
@@ -78,8 +84,32 @@ public class QueueProducer implements IQueueProducer {
                 payloadQueueRDto.setPayload(payload);
                 break;
 
+            case QueueConfig.Q_CREATE_CATEGORY:
+                payloadQueueRDto.setExchange(QueueConfig.E_SHOP_USER);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_CREATE_CATEGORY);
+                payloadQueueRDto.setPayload(payload);
+                break;
+            case QueueConfig.Q_CREATE_PRODUCT:
+                payloadQueueRDto.setExchange(QueueConfig.E_SHOP_USER);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_CREATE_PRODUCT);
+                payloadQueueRDto.setPayload(payload);
+                break;
+
         }
 
         return usingMqRPCQueue(payloadQueueRDto);
+    }
+
+    @Override
+    public PageResultMessage blockingStartRPCQueuePage(String queue, Object payload) {
+        Payload payloadQueueRDto = new Payload();
+        switch (queue) {
+            case QueueConfig.Q_GET_ORDER_ADMIN:
+                payloadQueueRDto.setExchange(QueueConfig.E_SHOP_USER);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_GET_ORDER_ADMIN);
+                payloadQueueRDto.setPayload(payload);
+                break;
+        }
+        return pageUsingMqRPCQueue(payloadQueueRDto);
     }
 }
