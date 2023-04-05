@@ -49,20 +49,20 @@ public class QueueProducer implements IQueueProducer {
     public void blockingStartQueue(String queue, Object payload) {
         Payload payloadQueueRDto = new Payload();
         switch (queue) {
-            case QueueConfig.VALIDATE_HANDLE_Q_SHOP_CHANGE_PASS:
-                payloadQueueRDto.setExchange(QueueConfig.E_SHOP_USER);
-                payloadQueueRDto.setRoutingKey(QueueConfig.VALIDATE_HANDLE_R_SHOP_CHANGE_PASS);
+            case QueueConfig.Q_NOTIFICATION_SEND:
+                payloadQueueRDto.setExchange(QueueConfig.E_NOTIFICATION_SEND);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_NOTIFICATION_SEND);
                 payloadQueueRDto.setPayload(payload);
                 break;
-            case QueueConfig.Q_MAIL_SEND:
-                payloadQueueRDto.setExchange(QueueConfig.E_MAIL_SEND);
-                payloadQueueRDto.setRoutingKey(QueueConfig.R_MAIL_SEND);
+            case QueueConfig.Q_AUTHORIZE:
+                payloadQueueRDto.setExchange(QueueConfig.E_USER);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_AUTHORIZE);
                 payloadQueueRDto.setPayload(payload);
                 break;
-            case QueueConfig.Q_AUTHORIZE_USER:
-                payloadQueueRDto.setExchange(QueueConfig.E_SHOP_USER);
-                payloadQueueRDto.setRoutingKey(QueueConfig.R_AUTHORIZE_USER);
+            case QueueConfig.Q_RESET_PASSWORD:
                 payloadQueueRDto.setPayload(payload);
+                payloadQueueRDto.setExchange(QueueConfig.E_USER);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_RESET_PASSWORD);
                 break;
         }
        usingMqQueue(payloadQueueRDto);
@@ -70,28 +70,37 @@ public class QueueProducer implements IQueueProducer {
 
 
     @Override
-    public ResultMessage blockingStartRPCQueue(String queue, Object payload) {
+    public ResultMessage<?> blockingStartRPCQueue(String queue, Object payload) {
         Payload payloadQueueRDto =new Payload();
         switch (queue) {
-            case QueueConfig.Q_GET_SHOP_USER:
-                payloadQueueRDto.setExchange(QueueConfig.E_SHOP_USER);
-                payloadQueueRDto.setRoutingKey(QueueConfig.R_GET_SHOP_USER);
+            case QueueConfig.Q_GET_USER:
+                payloadQueueRDto.setExchange(QueueConfig.E_USER);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_GET_USER);
                 payloadQueueRDto.setPayload(payload);
                 break;
-            case QueueConfig.Q_CREATE_SHOP_USER:
-                payloadQueueRDto.setExchange(QueueConfig.E_SHOP_USER);
-                payloadQueueRDto.setRoutingKey(QueueConfig.R_CREATE_SHOP_USER);
+            case QueueConfig.Q_CREATE_USER:
+                payloadQueueRDto.setExchange(QueueConfig.E_USER);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_CREATE_USER);
                 payloadQueueRDto.setPayload(payload);
                 break;
-
-            case QueueConfig.Q_CREATE_CATEGORY:
-                payloadQueueRDto.setExchange(QueueConfig.E_SHOP_USER);
-                payloadQueueRDto.setRoutingKey(QueueConfig.R_CREATE_CATEGORY);
+            case QueueConfig.Q_INIT_RESOURCE:
+                payloadQueueRDto.setExchange(QueueConfig.E_RESOURCE);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_INIT_RESOURCE);
                 payloadQueueRDto.setPayload(payload);
                 break;
-            case QueueConfig.Q_CREATE_PRODUCT:
-                payloadQueueRDto.setExchange(QueueConfig.E_SHOP_USER);
-                payloadQueueRDto.setRoutingKey(QueueConfig.R_CREATE_PRODUCT);
+            case QueueConfig.Q_PARAMETER:
+                payloadQueueRDto.setExchange(QueueConfig.E_PARAMETER);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_PARAMETER);
+                payloadQueueRDto.setPayload(payload);
+                break;
+            case QueueConfig.Q_VERIFY_RESOURCE:
+                payloadQueueRDto.setExchange(QueueConfig.E_RESOURCE);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_VERIFY_RESOURCE);
+                payloadQueueRDto.setPayload(payload);
+                break;
+            case QueueConfig.Q_CORE_CREATE_USER:
+                payloadQueueRDto.setExchange(QueueConfig.E_CORE_USER);
+                payloadQueueRDto.setRoutingKey(QueueConfig.R_CORE_CREATE_USER);
                 payloadQueueRDto.setPayload(payload);
                 break;
 
@@ -100,16 +109,4 @@ public class QueueProducer implements IQueueProducer {
         return usingMqRPCQueue(payloadQueueRDto);
     }
 
-    @Override
-    public PageResultMessage blockingStartRPCQueuePage(String queue, Object payload) {
-        Payload payloadQueueRDto = new Payload();
-        switch (queue) {
-            case QueueConfig.Q_GET_ORDER_ADMIN:
-                payloadQueueRDto.setExchange(QueueConfig.E_SHOP_USER);
-                payloadQueueRDto.setRoutingKey(QueueConfig.R_GET_ORDER_ADMIN);
-                payloadQueueRDto.setPayload(payload);
-                break;
-        }
-        return pageUsingMqRPCQueue(payloadQueueRDto);
-    }
 }

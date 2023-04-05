@@ -3,37 +3,42 @@ package com.example.queuecommonapi.config;
 
 public class QueueConfig {
     /* Config user shop*/
-    public final static String Q_AUTHORIZE_USER="q.authorize.shop.user";
-    public final static String R_AUTHORIZE_USER="q.authorize.shop.user";
-    public final static String Q_CHECK_SHOP_USER="q.check.shop.user";
-    public final static String R_CHECK_SHOP_USER="r.check.shop.user";
-    public final static String Q_CREATE_SHOP_USER="q.create.shop.user.other";
-    public final static String E_SHOP_USER="e.shop.user";
-    public final static String R_CREATE_SHOP_USER="r.create.shop.user.other";
-    public final static String Q_GET_SHOP_USER="q.get.user.shop";
-    public final static String R_GET_SHOP_USER="r.get.user.shop";
+    public final static String Q_AUTHORIZE="q.authorize";
+    public final static String R_AUTHORIZE="q.authorize";
+    public final static String Q_CREATE_USER="q.create.user";
+    public final static String E_USER="e.user";
+    public final static String R_CREATE_USER="r.create.user";
+    public final static String Q_GET_USER="q.get.user";
+    public final static String R_GET_USER="r.get.user";
 
-    public final static String R_MAIL_SEND="r.mail.send";
-    public final static String Q_MAIL_SEND="q.mail.send";
-    public final static String E_MAIL_SEND="e.mail.send";
+    public final static String Q_CORE_CREATE_USER="q.core.create.user";
+    public final static String E_CORE_USER="e.core.user";
+    public final static String R_CORE_CREATE_USER="r.core.create.user";
+    public final static String R_NOTIFICATION_SEND="r.notification.send";
+    public final static String Q_NOTIFICATION_SEND="q.notification.send";
+    public final static String E_NOTIFICATION_SEND="e.notification.send";
 
-    public final static String Q_CHANGE_PASSWORD_USER="q.change.pass.user";
 
-    public final static String R_CHANGE_PASSWORD_USER="r.change.pass.user";
+    public final static String Q_RESET_PASSWORD="q.reset.pass";
 
-    public final static String VALIDATE_HANDLE_Q_SHOP_CHANGE_PASS="validate.handle.q.shop.change.pass";
-    public final static String VALIDATE_HANDLE_R_SHOP_CHANGE_PASS="validate.handle.r.shop.change.pass";
+    public final static String R_RESET_PASSWORD="r.reset.pass";
 
-    public final static String Q_CREATE_CATEGORY="q.create.category";
-    public final static String R_CREATE_CATEGORY ="r.create.category";
+    public final static String Q_INIT_RESOURCE = "q.init.resource";
 
-    public final static String Q_CREATE_PRODUCT = "q.create.product";
+    public final static String R_INIT_RESOURCE = "r.init.resource";
 
-    public final static String R_CREATE_PRODUCT = "r.create.product";
+    public final static String Q_VERIFY_RESOURCE= "q.verify.resource";
 
-    public final static String Q_GET_ORDER_ADMIN = "q.get.order.admin";
+    public final static String R_VERIFY_RESOURCE = "r.verify.resource";
 
-    public final static String R_GET_ORDER_ADMIN = "r.get.order.admin";
+
+    public final static String E_RESOURCE ="e.resource";
+
+    public final static String E_PARAMETER ="e.parameter";
+
+    public final static String R_PARAMETER ="r.parameter";
+
+    public final static String Q_PARAMETER ="q.parameter";
 
 
 }

@@ -8,6 +8,4 @@ public interface IQueueProducer<T> {
     void blockingStartQueue(String queue, T payload);
     ResultMessage blockingStartRPCQueue(String queue, T payload);
 
-    PageResultMessage blockingStartRPCQueuePage(String queue, T payload);
-
 }
